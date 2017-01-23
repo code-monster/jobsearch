@@ -6,10 +6,6 @@ INSERT INTO vacancy (vacancy_name, company_name, creation_date, salary, location
 INSERT INTO vacancy (vacancy_name, company_name, creation_date, salary, location, description, original_link) VALUES ('Java', 'x4', '2016-12-20', '110000', 'удалённо', 'Must be able to obtain Position of Public Trust security clearance.', 'https://www.work.ua/jobs/888880/');
 
 
-INSERT INTO parser(parser_name, url, status) VALUES ('work.ua', 'off', 'https://www.work.ua/jobs-it-java/?advs=1');
-INSERT INTO parser(parser_name, url, status) VALUES ('rabota.ua', 'on', 'http://rabota.ua/jobsearch/vacancy_list?keyWords=java');
-
-
 INSERT INTO ROLE(ROLE_NAME) VALUES ('admin');
 INSERT INTO ROLE(ROLE_NAME) VALUES ('client');
 

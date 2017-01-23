@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 
 /**
@@ -33,10 +32,6 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private List<Parser> phoneNumbers;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -71,20 +66,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * @return the phoneNumbers
-     */
-    public List<Parser> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
-    /**
-     * @param phoneNumbers the phoneNumbers to set
-     */
-    public void setPhoneNumbers(List<Parser> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
     }
 
     /**
