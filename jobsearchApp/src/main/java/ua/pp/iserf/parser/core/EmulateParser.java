@@ -18,7 +18,6 @@ public class EmulateParser implements Runnable {
     public void run() {
 
         while (Thread.currentThread().isInterrupted()==false) {
-            // System.out.println("EmulateParser".getTimaee);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             System.out.println(timestamp + " counter="+counter.get());
             counter.incrementAndGet();
