@@ -1,7 +1,5 @@
 package ua.pp.iserf.entity;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,18 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author alex
  */
 @Entity
-public class User implements Serializable {
+public class User {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -32,14 +27,9 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = {
-                @JoinColumn(name = "user_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "role_id")})
-    private List<Role> roles;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public User() {
     }
@@ -68,28 +58,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    /**
-     * @return the roles
-     */
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    /**
-     * @param roles the roles to set
-     */
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
     public Role getRole() {
+        return role;
+    }
 
-        List<Role> userRoleList = getRoles();
-        for (Role role : userRoleList) {
-            return role;
-        }
-        return null;
-
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 }

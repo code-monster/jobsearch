@@ -1,8 +1,6 @@
 package ua.pp.iserf.entity;
 
-import java.io.Serializable;
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Vacancy implements Serializable {
-
-    private static long serialVersionUID = 1L;
+public class Vacancy  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +28,6 @@ public class Vacancy implements Serializable {
     private String description;
     @Column(name = "original_link", nullable = false)
     private String originalLink;
-    
 
     public Vacancy() {
     }
@@ -149,8 +144,4 @@ public class Vacancy implements Serializable {
         this.originalLink = originalLink;
     }
 
-
-
-    
-    
 }
