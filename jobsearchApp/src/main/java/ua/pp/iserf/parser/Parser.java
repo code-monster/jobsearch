@@ -1,7 +1,6 @@
 package ua.pp.iserf.parser;
 
-import java.util.concurrent.atomic.AtomicInteger;
-import ua.pp.iserf.parser.core.EmulateParser;
+import ua.pp.iserf.parser.modules.EmulateParser;
 
 /**
  *
@@ -10,7 +9,6 @@ import ua.pp.iserf.parser.core.EmulateParser;
 public class Parser {
 
     private Thread thread;
-    private AtomicInteger counter;
     public static final String STATUS_RUN = "RUN";
     public static final String STATUS_STOP = "STOP";
     private String status;
@@ -26,13 +24,12 @@ public class Parser {
     }
 
     private Parser() {
-        counter = new AtomicInteger();
         status = STATUS_STOP;
     }
 
     public void run() {
 
-        EmulateParser emulateParser = new EmulateParser(counter);
+        EmulateParser emulateParser = new EmulateParser();
         thread = new Thread(emulateParser);
         thread.start();
         setStatus(STATUS_RUN);
