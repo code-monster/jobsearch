@@ -1,14 +1,14 @@
 package ua.pp.iserf.parser.core;
 
-
 /**
  *
  * @author alex
  */
 public abstract class DataSource {
 
-    protected boolean enable;
-    protected String name;
+    private boolean runningStatus;
+    private boolean enable;
+    private String name;
 
     public abstract void start();
 
@@ -40,6 +40,20 @@ public abstract class DataSource {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the runningStatus
+     */
+    public boolean isRunningStatus() {
+        return runningStatus;
+    }
+
+    /**
+     * @param runningStatus the runningStatus to set
+     */
+    public void setRunningStatus(boolean runningStatus) {
+        this.runningStatus = runningStatus;
     }
 
 }

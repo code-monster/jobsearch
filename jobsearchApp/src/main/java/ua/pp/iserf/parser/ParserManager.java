@@ -24,7 +24,7 @@ public class ParserManager {
 
         List parserNameList = new ArrayList();
         for (DataSource parser : parserList) {
-            parserNameList.add(parser.getName());
+            parserNameList.add(parser.getName() + " enabled:" + parser.isEnable());
         }
 
         return parserNameList;

@@ -8,29 +8,32 @@ import ua.pp.iserf.parser.core.DataSource;
  * @author alex
  */
 @Component
-public class EmulateParser extends DataSource  {
+public class EmulateParser extends DataSource {
 
     private Thread thread;
 
     public EmulateParser() {
-        enable = true;
-        name = "Emulate Parser";
-
+        setRunningStatus(false);
+        setEnable(false);
+        setName("Emulate Parser");
     }
 
     public void start() {
-this.setEnable(true);
-//        EmulateWorker emulateParser = new EmulateWorker();
-//        thread = new Thread(emulateParser);
-//        thread.start();
-        
-
+        if (isEnable() == false) {
+            return;
+        }
+        EmulateWorker emulateParser = new EmulateWorker();
+        thread = new Thread(emulateParser);
+        thread.start();
+        setRunningStatus(true);
     }
 
     public void stop() {
-
-     //   thread.interrupt();
-        this.setEnable(false);
+        if (isEnable() == false) {
+            return;
+        }
+        thread.interrupt();
+        setRunningStatus(false);
 
     }
 

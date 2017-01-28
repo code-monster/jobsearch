@@ -22,11 +22,15 @@ public class BlogspotParser extends DataSource {
     public final String BASE_URL = "http://javajobsearchapp.blogspot.com/";
 
     public BlogspotParser() {
-        enable = true;
-        name = "Blogspot Parser";
+        setRunningStatus(false);
+        setEnable(true);
+        setName("Blogspot Parser");
     }
 
     public void start() {
+        if (isEnable() == false) {
+            return;
+        }
         this.setEnable(true);
         List allPageUrl = getAllUrl();
         // for test
@@ -45,7 +49,10 @@ public class BlogspotParser extends DataSource {
     }
 
     public void stop() {
-        this.setEnable(false);
+        if (isEnable() == false) {
+            return;
+        }
+        setRunningStatus(false);
     }
 
     protected Document getDocument(String urlOpen) {
