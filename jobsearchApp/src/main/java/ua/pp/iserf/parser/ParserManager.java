@@ -1,46 +1,56 @@
 package ua.pp.iserf.parser;
 
-import ua.pp.iserf.parser.modules.EmulateParser;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import ua.pp.iserf.parser.core.DataSource;
 
 /**
+ * Global control for all parser objects
  *
  * @author alex
  */
-public class Parser {
+@Component
+public class ParserManager {
 
-    private Thread thread;
     public static final String STATUS_RUN = "RUN";
     public static final String STATUS_STOP = "STOP";
-    private String status;
+    private String status = STATUS_STOP;
     private String action;
+    private List<DataSource> parserList;
 
-    private static Parser _instance = null;
+    public List<String> retrieveParserNameList() {
 
-    public static synchronized Parser getInstance() {
-        if (_instance == null) {
-            _instance = new Parser();
+        List parserNameList = new ArrayList();
+        for (DataSource parser : parserList) {
+            parserNameList.add(parser.getName());
         }
-        return _instance;
+
+        return parserNameList;
     }
 
-    private Parser() {
-        status = STATUS_STOP;
+    public ParserManager() {
+
+    }
+
+    @Autowired
+    public void setParserList(List<DataSource> parserList) {
+        this.parserList = parserList;
     }
 
     public void run() {
-
-        EmulateParser emulateParser = new EmulateParser();
-        thread = new Thread(emulateParser);
-        thread.start();
+        for (DataSource parser : parserList) {
+            parser.run();
+        }
         setStatus(STATUS_RUN);
-
     }
 
     public void stop() {
-
-        thread.interrupt();
+        for (DataSource parser : parserList) {
+            parser.stop();
+        }
         setStatus(STATUS_STOP);
-
     }
 
     /**

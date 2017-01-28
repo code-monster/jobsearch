@@ -1,21 +1,25 @@
 package ua.pp.iserf.parser.core.beans;
 
+import java.util.List;
+
 /**
  *
  * @author alex
  */
-public class ParserSetting {
+public class ParserManagerSetting {
 
-    public ParserSetting() {
+    public ParserManagerSetting() {
     }
 
-    public ParserSetting(String status, String action) {
+    public ParserManagerSetting(String status, String action, List<String> parserNameList) {
         this.status = status;
         this.action = action;
+        this.parserNameList = parserNameList;
     }
 
     private String status;
     private String action;
+    private List<String> parserNameList;
 
     /**
      * @return the status
@@ -43,6 +47,20 @@ public class ParserSetting {
      */
     public void setAction(String action) {
         this.action = action;
+    }
+
+    /**
+     * @return the parserNameList
+     */
+    public List<String> getParserNameList() {
+        return parserNameList;
+    }
+
+    /**
+     * @param parserNameList the parserNameList to set
+     */
+    public void setParserNameList(List<String> parserNameList) {
+        this.parserNameList = parserNameList;
     }
 
 }

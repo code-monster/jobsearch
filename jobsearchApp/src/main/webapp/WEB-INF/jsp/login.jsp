@@ -12,23 +12,23 @@
         <div class="row">
             <div class="large-4 columns login-form-column">
                 <div class="panel-body">
-        <table>
-            <tr>
-                <td> 
-                    <p><b>Admin:</b></p>
-                    <p>login=admin</p>
-                    <p>pass=1234</p>
-                </td>  
-            </tr> 
-        </table>
+                    <table>
+                        <tr>
+                            <td> 
+                                <p><b>Admin:</b></p>
+                                <p>login=admin</p>
+                                <p>pass=1234</p>
+                            </td>  
+                        </tr> 
+                    </table>
                     <h3>Login page</h3>
                     <div>
 
                         <form:form action="${loginUrl}" method="POST">
 
-                            <p><input type="text" name="j_username" placeholder="Login" maxlength="25"></p>
+                            <p><input type="text" name="j_username" placeholder="Login" maxlength="25" value="admin"></p>
 
-                            <p><input type="password" name="j_password" placeholder="Password" maxlength="25"></p>
+                            <p><input type="password" name="j_password" placeholder="Password" maxlength="25" value="1234"></p>
 
                             <input type="submit" name="submit" class="login login-submit  btn btn-lg btn-success" value="Login">
 
