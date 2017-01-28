@@ -1,5 +1,7 @@
-package ua.pp.iserf.parser.core;
+package ua.pp.iserf.parser.modules.blogspot;
 
+import java.io.IOException;
+import org.jsoup.Jsoup;
 import ua.pp.iserf.parser.core.beans.Vacancy;
 import org.jsoup.nodes.Document;
 
@@ -7,7 +9,7 @@ import org.jsoup.nodes.Document;
  *
  * @author alex
  */
-public class SingleVacancyParser extends Parser {
+public class SingleVacancyParser  {
 
     private String baseUrl;
     
@@ -28,6 +30,16 @@ public class SingleVacancyParser extends Parser {
         return vacancy;
     }
 
+    protected Document getDocument(String urlOpen) {
+        Document doc;
+        try {
+            doc = Jsoup.connect(urlOpen).get();
+        } catch (IOException e) {
+            throw new RuntimeException(e.toString());
+        }
+        return doc;
+    }
+    
     /**
      * @return the baseUrl
      */

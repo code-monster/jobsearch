@@ -18,18 +18,18 @@ public class EmulateParser extends DataSource  {
 
     }
 
-    public void run() {
-
-        EmulateWorker emulateParser = new EmulateWorker();
-        thread = new Thread(emulateParser);
-        thread.start();
-        this.setEnable(true);
+    public void start() {
+this.setEnable(true);
+//        EmulateWorker emulateParser = new EmulateWorker();
+//        thread = new Thread(emulateParser);
+//        thread.start();
+        
 
     }
 
     public void stop() {
 
-        thread.interrupt();
+     //   thread.interrupt();
         this.setEnable(false);
 
     }

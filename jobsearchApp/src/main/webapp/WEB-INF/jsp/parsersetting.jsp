@@ -10,7 +10,7 @@
 
             <div class="large-8 columns">
 
-                <h1>Setting for parser</h1>
+                <h3>Setting for parser</h3>
                 <b>Parser list:</b>
                 <ul>
                     <c:forEach var="parserName"  items="${parserSetting.parserNameList}" >

@@ -10,7 +10,7 @@ public abstract class DataSource {
     protected boolean enable;
     protected String name;
 
-    public abstract void run();
+    public abstract void start();
 
     public abstract void stop();
 

@@ -39,9 +39,9 @@ public class ParserManager {
         this.parserList = parserList;
     }
 
-    public void run() {
+    public void start() {
         for (DataSource parser : parserList) {
-            parser.run();
+            parser.start();
         }
         setStatus(STATUS_RUN);
     }

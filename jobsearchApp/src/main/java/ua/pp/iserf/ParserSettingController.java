@@ -43,7 +43,7 @@ public class ParserSettingController {
             parserManager.stop();
         } else {
             System.out.println("command run  in controller");
-            parserManager.run();
+            parserManager.start();
         }
 
         return new ModelAndView("redirect:/parsersetting");
