@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Vacancy  {
+public class Vacancy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,16 @@ public class Vacancy  {
     private String originalLink;
 
     public Vacancy() {
+    }
+
+    public Vacancy(String vacancyName, String companyName, Date creationDate, String salary, String location, String description, String originalLink) {
+        this.vacancyName = vacancyName;
+        this.companyName = companyName;
+        this.creationDate = creationDate;
+        this.salary = salary;
+        this.location = location;
+        this.description = description;
+        this.originalLink = originalLink;
     }
 
     /**
@@ -143,10 +153,10 @@ public class Vacancy  {
     public void setOriginalLink(String originalLink) {
         this.originalLink = originalLink;
     }
-    
+
     @Override
     public String toString() {
-        return "vacancyName:" + vacancyName + " description:" + description+"\n";
+        return "vacancyName:" + vacancyName + " description:" + description + "\n";
     }
 
 }

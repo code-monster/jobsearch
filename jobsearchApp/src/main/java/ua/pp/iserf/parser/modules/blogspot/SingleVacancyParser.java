@@ -46,9 +46,6 @@ public class SingleVacancyParser {
         return doc;
     }
 
-    /**
-     * @return the baseUrl
-     */
     public java.sql.Date getTempDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date utilDate = new java.util.Date();

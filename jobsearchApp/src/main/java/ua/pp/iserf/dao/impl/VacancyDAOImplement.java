@@ -25,23 +25,23 @@ public class VacancyDAOImplement implements VacancyDAO {
     }
 
     @Override
-    public void create(Vacancy detail) {
-        sessionFactory.getCurrentSession().save(detail);
+    public void create(Vacancy vacancy) {
+        sessionFactory.getCurrentSession().save(vacancy);
     }
 
     @Override
-    public void update(Vacancy detail) {
-        sessionFactory.getCurrentSession().update(detail);
+    public void update(Vacancy vacancy) {
+        sessionFactory.getCurrentSession().update(vacancy);
     }
 
     @Override
-    public void delete(Vacancy detail) {
-       sessionFactory.getCurrentSession().delete(detail);
+    public void delete(Vacancy vacancy) {
+        sessionFactory.getCurrentSession().delete(vacancy);
     }
 
     @Override
-    public Vacancy findById(Long detailId) {
-        return (Vacancy) sessionFactory.getCurrentSession().get(Vacancy.class, detailId);
+    public Vacancy findById(Long vacancyId) {
+        return (Vacancy) sessionFactory.getCurrentSession().get(Vacancy.class, vacancyId);
     }
 
     @Override
@@ -49,6 +49,19 @@ public class VacancyDAOImplement implements VacancyDAO {
     public List<Vacancy> findAll() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Vacancy");
         return new ArrayList<>(query.list());
+    }
+
+    @Override
+    public Vacancy findByOriginalLink(String originalLink) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("from Vacancy v where v.originalLink = :originalLink")
+                .setString("originalLink", originalLink);
+        Vacancy vacancy = null;
+        if (!query.list().isEmpty()) {
+            vacancy = (Vacancy) query.list().get(0);
+        }
+
+        return vacancy;
     }
 
 }

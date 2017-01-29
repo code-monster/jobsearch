@@ -15,4 +15,6 @@ public interface VacancyService {
 
     public List<Vacancy> findAll();
 
+    public Vacancy findByOriginalLink(String originalLink);
+
 }

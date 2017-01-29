@@ -18,4 +18,6 @@ public interface VacancyDAO {
 
     public List<Vacancy> findAll();
 
+    public Vacancy findByOriginalLink(String originalLink);
+
 }

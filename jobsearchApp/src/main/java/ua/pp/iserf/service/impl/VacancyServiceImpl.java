@@ -13,37 +13,41 @@ import ua.pp.iserf.entity.Vacancy;
 @Transactional
 public class VacancyServiceImpl implements VacancyService {
 
-    private VacancyDAO detailDAO;
+    private VacancyDAO vacancyDAO;
 
     @Autowired
-    public void setDetailDAO(VacancyDAO detailDAO) {
-        this.detailDAO = detailDAO;
+    public void setDetailDAO(VacancyDAO vacancyDAO) {
+        this.vacancyDAO = vacancyDAO;
     }
 
     @Override
-    public void create(Vacancy detail) {
-        detailDAO.create(detail);
+    public void create(Vacancy vacancy) {
+        vacancyDAO.create(vacancy);
     }
 
     @Override
-    public void update(Vacancy detail) {
-        detailDAO.update(detail);
+    public void update(Vacancy vacancy) {
+        vacancyDAO.update(vacancy);
     }
 
     @Override
-    public void delete(Vacancy detail) {
-        detailDAO.delete(detail);
+    public void delete(Vacancy vacancy) {
+        vacancyDAO.delete(vacancy);
     }
 
     @Override
     public Vacancy findById(Long id) {
-        return detailDAO.findById(id);
+        return vacancyDAO.findById(id);
     }
 
     @Override
     public List<Vacancy> findAll() {
-        return detailDAO.findAll();
+        return vacancyDAO.findAll();
     }
 
- 
+    @Override
+    public Vacancy findByOriginalLink(String originalLink) {
+        return vacancyDAO.findByOriginalLink(originalLink);
+    }
+
 }
