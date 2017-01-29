@@ -1,16 +1,23 @@
 package ua.pp.iserf.parser.modules.blogspot;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.pp.iserf.entity.Vacancy;
 import ua.pp.iserf.parser.core.DataSource;
-import ua.pp.iserf.parser.core.beans.Vacancy;
+import ua.pp.iserf.service.VacancyService;
 
 /**
  *
@@ -20,6 +27,9 @@ import ua.pp.iserf.parser.core.beans.Vacancy;
 public class BlogspotParser extends DataSource {
 
     public final String BASE_URL = "http://javajobsearchapp.blogspot.com/";
+
+    @Autowired
+    VacancyService vacancyService;
 
     public BlogspotParser() {
         setRunningStatus(false);
@@ -43,6 +53,8 @@ public class BlogspotParser extends DataSource {
             String url = (String) it.next();
             singleVacancyParser.setBaseUrl(url);
             Vacancy vacancy = singleVacancyParser.getVacancy();
+            vacancyService.create(vacancy);
+
             System.out.println(vacancy.toString());
         }
 

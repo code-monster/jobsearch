@@ -24,7 +24,7 @@ public class Vacancy  {
     private String salary;
     @Column(name = "location")
     private String location;
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 255)
     private String description;
     @Column(name = "original_link", nullable = false)
     private String originalLink;
@@ -142,6 +142,11 @@ public class Vacancy  {
      */
     public void setOriginalLink(String originalLink) {
         this.originalLink = originalLink;
+    }
+    
+    @Override
+    public String toString() {
+        return "vacancyName:" + vacancyName + " description:" + description+"\n";
     }
 
 }
