@@ -4,7 +4,7 @@ package ua.pp.iserf.parser.core;
  *
  * @author alex
  */
-public abstract class DataSource {
+public abstract class Provider {
 
     private boolean runningStatus;
     private boolean enable;

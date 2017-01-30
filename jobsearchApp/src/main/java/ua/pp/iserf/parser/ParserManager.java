@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ua.pp.iserf.parser.core.DataSource;
+import ua.pp.iserf.parser.core.Provider;
 
 /**
  * Global control for all parser objects
@@ -18,12 +18,12 @@ public class ParserManager {
     public static final String STATUS_STOP = "STOP";
     private String status = STATUS_STOP;
     private String action;
-    private List<DataSource> parserList;
+    private List<Provider> parserList;
 
     public List<String> retrieveParserNameList() {
 
         List parserNameList = new ArrayList();
-        for (DataSource parser : parserList) {
+        for (Provider parser : parserList) {
             parserNameList.add(parser.getName() + " enabled:" + parser.isEnable());
         }
 
@@ -35,19 +35,19 @@ public class ParserManager {
     }
 
     @Autowired
-    public void setParserList(List<DataSource> parserList) {
+    public void setParserList(List<Provider> parserList) {
         this.parserList = parserList;
     }
 
     public void start() {
-        for (DataSource parser : parserList) {
+        for (Provider parser : parserList) {
             parser.start();
         }
         setStatus(STATUS_RUN);
     }
 
     public void stop() {
-        for (DataSource parser : parserList) {
+        for (Provider parser : parserList) {
             parser.stop();
         }
         setStatus(STATUS_STOP);

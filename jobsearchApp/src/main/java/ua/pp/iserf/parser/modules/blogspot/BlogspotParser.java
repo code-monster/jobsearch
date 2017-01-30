@@ -16,7 +16,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.pp.iserf.entity.Vacancy;
-import ua.pp.iserf.parser.core.DataSource;
+import ua.pp.iserf.parser.core.Provider;
 import ua.pp.iserf.service.VacancyService;
 
 /**
@@ -24,7 +24,7 @@ import ua.pp.iserf.service.VacancyService;
  * @author alex
  */
 @Component
-public class BlogspotParser extends DataSource {
+public class BlogspotParser extends Provider {
 
     public final String BASE_URL = "http://javajobsearchapp.blogspot.com/";
 

@@ -1,14 +1,14 @@
 package ua.pp.iserf.parser.modules.emulate;
 
 import org.springframework.stereotype.Component;
-import ua.pp.iserf.parser.core.DataSource;
+import ua.pp.iserf.parser.core.Provider;
 
 /**
  *
  * @author alex
  */
 @Component
-public class EmulateParser extends DataSource {
+public class EmulateParser extends Provider {
 
     private Thread thread;
 
