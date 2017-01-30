@@ -31,7 +31,7 @@ public class SingleVacancyParser {
         vacancy.setVacancyName(doc.select(".entry-content h1").text());
         vacancy.setDescription(cutDescription(doc.select(".entry-content p.description").text()));
         vacancy.setCreationDate(getTempDate());
-        vacancy.setOriginalLink("https://github.com/code-monster/jobsearch");
+        vacancy.setOriginalLink(baseUrl);
 
         return vacancy;
     }

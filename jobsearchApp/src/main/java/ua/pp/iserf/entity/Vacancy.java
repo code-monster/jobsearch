@@ -26,7 +26,7 @@ public class Vacancy {
     private String location;
     @Column(name = "description", nullable = false, length = 255)
     private String description;
-    @Column(name = "original_link", nullable = false)
+    @Column(name = "original_link", nullable = false, unique = true)
     private String originalLink;
 
     public Vacancy() {
