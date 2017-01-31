@@ -36,7 +36,9 @@ public class VacancyTest extends DBUnitConfig {
     @Test
     public void shouldCreateVacancy() {
         //given
-        Vacancy vacancy = new Vacancy("Java Junior 1", "Absolut", Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov", "description text", "https://bitbucket.org/10000");
+        Vacancy vacancy = new Vacancy("Java Junior 1", "Absolut", 
+                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                "description text",  "https://bitbucket.org/10000", "Emulate Parser");
 
         Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10000"));
         //when

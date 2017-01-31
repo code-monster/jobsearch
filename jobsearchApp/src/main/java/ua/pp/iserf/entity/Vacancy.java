@@ -28,11 +28,13 @@ public class Vacancy {
     private String description;
     @Column(name = "original_link", nullable = false, unique = true)
     private String originalLink;
+    @Column(name = "provider", nullable = false)
+    private String provider;
 
     public Vacancy() {
     }
 
-    public Vacancy(String vacancyName, String companyName, Date creationDate, String salary, String location, String description, String originalLink) {
+    public Vacancy(String vacancyName, String companyName, Date creationDate, String salary, String location, String description, String originalLink, String provider) {
         this.vacancyName = vacancyName;
         this.companyName = companyName;
         this.creationDate = creationDate;
@@ -40,6 +42,7 @@ public class Vacancy {
         this.location = location;
         this.description = description;
         this.originalLink = originalLink;
+        this.provider = provider;
     }
 
     /**
@@ -152,6 +155,20 @@ public class Vacancy {
      */
     public void setOriginalLink(String originalLink) {
         this.originalLink = originalLink;
+    }
+
+    /**
+     * @return the provider
+     */
+    public String getProvider() {
+        return provider;
+    }
+
+    /**
+     * @param provider the provider to set
+     */
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
     @Override

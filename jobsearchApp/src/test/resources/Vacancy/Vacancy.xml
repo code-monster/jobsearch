@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <vacancy vacancy_id = "501" vacancy_name="Java Junior 1" company_name="aaa" creation_date="2016-12-20" salary="500" location=""  description="description text" original_link="https://bitbucket.org/1" />
-    <vacancy vacancy_id = "502" vacancy_name="Java Junior 2" company_name="aab" creation_date="2016-12-20" salary="500" location=""  description="description text" original_link="https://bitbucket.org/2" />
-    <vacancy vacancy_id = "503" vacancy_name="Java Junior 3" company_name="aac" creation_date="2016-12-20" salary="500" location=""  description="description text" original_link="https://bitbucket.org/3" />
-    <vacancy vacancy_id = "504" vacancy_name="Java Junior 4" company_name="aba" creation_date="2016-12-20" salary="500" location=""  description="description text" original_link="https://bitbucket.org/4" />
+    <vacancy vacancy_id = "501" vacancy_name="Java Junior 1" company_name="aaa" creation_date="2016-12-20" salary="500" location=""  description="description text" provider = "Blogspot Parser"  original_link="https://bitbucket.org/1" />
+    <vacancy vacancy_id = "502" vacancy_name="Java Junior 2" company_name="aab" creation_date="2016-12-20" salary="500" location=""  description="description text" provider = "Blogspot Parser"  original_link="https://bitbucket.org/2" />
+    <vacancy vacancy_id = "503" vacancy_name="Java Junior 3" company_name="aac" creation_date="2016-12-20" salary="500" location=""  description="description text" provider = "Blogspot Parser"  original_link="https://bitbucket.org/3" />
+    <vacancy vacancy_id = "504" vacancy_name="Java Junior 4" company_name="aba" creation_date="2016-12-20" salary="500" location=""  description="description text" provider = "Emulate Parser"  original_link="https://bitbucket.org/4" />
 
 </dataset>
 

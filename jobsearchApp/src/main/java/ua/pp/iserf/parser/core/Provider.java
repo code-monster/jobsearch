@@ -8,6 +8,7 @@ public abstract class Provider {
 
     private boolean runningStatus;
     private boolean enable;
+    // required field, this name will used in database 
     private String name;
 
     public abstract void start();

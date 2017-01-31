@@ -46,7 +46,7 @@ public class BlogspotParser extends Provider {
         // for test
         System.out.println(java.util.Arrays.deepToString(allPageUrl.toArray()));
 
-        SingleVacancyParser singleVacancyParser = new SingleVacancyParser();
+        SingleVacancyParser singleVacancyParser = new SingleVacancyParser(this.getName());
 
         for (Iterator it = allPageUrl.iterator(); it.hasNext();) {
 
