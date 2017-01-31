@@ -13,9 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-        <link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet'
-              type='text/css'>
+        <link href="<c:url  value="/static/css/foundation.min.css" />" rel="stylesheet">
+        <link href="<c:url  value="/static/css/foundation-icons.css" />" rel='stylesheet'>
         <link href="<c:url  value="/static/css/app.css" />" rel="stylesheet">
         <title>${title}</title>
     </head>
