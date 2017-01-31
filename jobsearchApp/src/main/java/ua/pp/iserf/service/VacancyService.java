@@ -20,4 +20,6 @@ public interface VacancyService {
 
     public Map<String, Vacancy> findAllVacancyByProviderName(String providerName);
 
+    public void createListofVacancy(List<Vacancy> vacancyList);
+
 }

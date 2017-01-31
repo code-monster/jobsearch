@@ -56,4 +56,11 @@ public class VacancyServiceImpl implements VacancyService {
         return vacancyDAO.findAllVacancyByProviderName(providerName);
     }
 
+    @Override
+    public void createListofVacancy(List<Vacancy> vacancyList) {
+        for (Vacancy vacancy : vacancyList) {
+            vacancyDAO.create(vacancy);
+        }
+    }
+
 }

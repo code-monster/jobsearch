@@ -5,8 +5,10 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.Jsoup;
@@ -46,17 +48,22 @@ public class BlogspotParser extends Provider {
         // for test
         System.out.println(java.util.Arrays.deepToString(allPageUrl.toArray()));
 
+        Map<String, Vacancy> allProviderVacancyInDB = vacancyService.findAllVacancyByProviderName(this.getName());
+        List<Vacancy> freshVacancyList = new ArrayList<Vacancy>();
         SingleVacancyParser singleVacancyParser = new SingleVacancyParser(this.getName());
 
         for (Iterator it = allPageUrl.iterator(); it.hasNext();) {
-
             String url = (String) it.next();
-            singleVacancyParser.setBaseUrl(url);
-            Vacancy vacancy = singleVacancyParser.getVacancy();
-            vacancyService.create(vacancy);
-
-            System.out.println(vacancy.toString());
+            if (allProviderVacancyInDB.containsKey(url) == false) {
+                singleVacancyParser.setBaseUrl(url);
+                Vacancy vacancy = singleVacancyParser.getVacancy();
+                freshVacancyList.add(vacancy);
+                System.out.println(vacancy.toString());
+            }
         }
+
+        System.out.println("we got freshVacancyList = " + freshVacancyList.size());
+        vacancyService.createListofVacancy(freshVacancyList);
 
     }
 

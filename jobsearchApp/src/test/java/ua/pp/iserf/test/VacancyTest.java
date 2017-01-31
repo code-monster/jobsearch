@@ -1,6 +1,7 @@
 package ua.pp.iserf.test;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.dbunit.dataset.DataSetException;
@@ -20,6 +21,13 @@ public class VacancyTest extends DBUnitConfig {
 
     @Autowired
     private VacancyService vacancyService;
+    
+    Vacancy vacancyTemp1 = new Vacancy("Java Junior 1", "Absolut", 
+                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                "description text",  "https://bitbucket.org/10000", "Emulate Parser");
+    Vacancy vacancyTemp2 = new Vacancy("Java Junior 1", "Absolut", 
+                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                "description text",  "https://bitbucket.org/10001", "Emulate Parser");
 
     public VacancyTest() throws SQLException, ClassNotFoundException {
     }
@@ -37,18 +45,33 @@ public class VacancyTest extends DBUnitConfig {
     @Test
     public void shouldCreateVacancy() {
         //given
-        Vacancy vacancy = new Vacancy("Java Junior 1", "Absolut", 
-                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
-                "description text",  "https://bitbucket.org/10000", "Emulate Parser");
-
         Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10000"));
         //when
-        vacancyService.create(vacancy);
+        vacancyService.create(vacancyTemp1);
         //then
         Vacancy vacancyFromDB = vacancyService.findByOriginalLink("https://bitbucket.org/10000");
         Assert.assertNotNull(vacancyFromDB);
         //deleting  new row
         vacancyService.delete(vacancyFromDB);
+    }
+    
+    @Test
+    public void shouldCreateListofVacancy() {
+        //given
+        List <Vacancy> vacancyList = new ArrayList<>();
+        vacancyList.add(vacancyTemp1);
+        vacancyList.add(vacancyTemp2);
+        
+        Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10000"));
+        Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10001"));
+        //when
+        vacancyService.createListofVacancy(vacancyList);
+        //then
+        Vacancy vacancyFromDB1 = vacancyService.findByOriginalLink("https://bitbucket.org/10000");
+        Assert.assertNotNull(vacancyFromDB1);
+        
+        Vacancy vacancyFromDB2 = vacancyService.findByOriginalLink("https://bitbucket.org/10001");
+        Assert.assertNotNull(vacancyFromDB2);
     }
 
     @Test
