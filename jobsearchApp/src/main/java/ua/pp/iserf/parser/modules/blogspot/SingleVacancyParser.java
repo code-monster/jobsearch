@@ -1,10 +1,7 @@
 package ua.pp.iserf.parser.modules.blogspot;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import ua.pp.iserf.entity.Vacancy;
@@ -14,26 +11,26 @@ import ua.pp.iserf.entity.Vacancy;
  * @author alex
  */
 public class SingleVacancyParser {
-    
+
     private String baseUrl;
     private String providerName;
-    
+
     public SingleVacancyParser(String providerName) {
         this.providerName = providerName;
     }
-    
+
     public Vacancy getVacancy() {
         Vacancy vacancy = new Vacancy();
         Document doc = getDocument(getBaseUrl());
         vacancy.setVacancyName(doc.select(".entry-content h1").text());
         vacancy.setDescription(cutDescription(doc.select(".entry-content p.description").text()));
-        vacancy.setCreationDate(getTempDate());
+        vacancy.setCreationDate(getTodayDate());
         vacancy.setOriginalLink(baseUrl);
         vacancy.setProvider(providerName);
-        
+
         return vacancy;
     }
-    
+
     protected Document getDocument(String urlOpen) {
         Document doc;
         try {
@@ -43,20 +40,12 @@ public class SingleVacancyParser {
         }
         return doc;
     }
-    
-    public java.sql.Date getTempDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        java.util.Date utilDate = new java.util.Date();
-        try {
-            utilDate = sdf.parse("21/12/2012");
-        } catch (ParseException ex) {
-            Logger.getLogger(BlogspotParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-        
-        return sqlDate;
+
+    public java.sql.Date getTodayDate() {
+        LocalDate today = LocalDate.now();
+        return java.sql.Date.valueOf(today);
     }
-    
+
     public String cutDescription(String description) {
         if (description.length() > 255) {
             description = description.substring(0, 250) + "...";
@@ -77,5 +66,5 @@ public class SingleVacancyParser {
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
-    
+
 }

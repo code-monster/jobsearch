@@ -1,5 +1,6 @@
 package ua.pp.iserf.service.impl;
 
+import java.time.LocalDate;
 import ua.pp.iserf.dao.VacancyDAO;
 import ua.pp.iserf.service.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,18 @@ public class VacancyServiceImpl implements VacancyService {
         for (Vacancy vacancy : vacancyList) {
             vacancyDAO.create(vacancy);
         }
+    }
+
+    @Override
+    public boolean isVacancyOlderThanTwoWeeks(Vacancy vacancy) {
+        LocalDate today = LocalDate.now();
+        LocalDate twoWeeksAgo = today.minusDays(14);
+        LocalDate vacancyDate = vacancy.getCreationDate().toLocalDate();
+
+        if (vacancyDate.isBefore(twoWeeksAgo)) {
+            return true;
+        }
+        return false;
     }
 
 }

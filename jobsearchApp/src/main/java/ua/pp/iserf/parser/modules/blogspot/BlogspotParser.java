@@ -1,16 +1,10 @@
 package ua.pp.iserf.parser.modules.blogspot;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -52,6 +46,7 @@ public class BlogspotParser extends Provider {
         List<Vacancy> freshVacancyList = new ArrayList<Vacancy>();
         SingleVacancyParser singleVacancyParser = new SingleVacancyParser(this.getName());
 
+        // to do: need refactor  
         for (Iterator it = allPageUrl.iterator(); it.hasNext();) {
             String url = (String) it.next();
             if (allProviderVacancyInDB.containsKey(url) == false) {

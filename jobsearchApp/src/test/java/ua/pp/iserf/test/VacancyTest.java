@@ -1,6 +1,7 @@
 package ua.pp.iserf.test;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +22,9 @@ public class VacancyTest extends DBUnitConfig {
 
     @Autowired
     private VacancyService vacancyService;
-    
-    Vacancy vacancyTemp1 = new Vacancy("Java Junior 1", "Absolut", 
-                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
-                "description text",  "https://bitbucket.org/10000", "Emulate Parser");
-    Vacancy vacancyTemp2 = new Vacancy("Java Junior 1", "Absolut", 
-                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
-                "description text",  "https://bitbucket.org/10001", "Emulate Parser");
+
+    Vacancy vacancyTemp1;
+    Vacancy vacancyTemp2;
 
     public VacancyTest() throws SQLException, ClassNotFoundException {
     }
@@ -40,6 +37,13 @@ public class VacancyTest extends DBUnitConfig {
         beforeData = new FlatXmlDataSetBuilder().build(VacancyTest.class.getResourceAsStream("/Vacancy/Vacancy.xml"));
         tester.setDataSet(beforeData);
         tester.onSetup();
+
+        vacancyTemp1 = new Vacancy("Java Junior 1", "Absolut",
+                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                "description text", "https://bitbucket.org/10000", "Emulate Parser");
+        vacancyTemp2 = new Vacancy("Java Junior 1", "Absolut",
+                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                "description text", "https://bitbucket.org/10001", "Emulate Parser");
     }
 
     @Test
@@ -54,14 +58,14 @@ public class VacancyTest extends DBUnitConfig {
         //deleting  new row
         vacancyService.delete(vacancyFromDB);
     }
-    
+
     @Test
     public void shouldCreateListofVacancy() {
         //given
-        List <Vacancy> vacancyList = new ArrayList<>();
+        List<Vacancy> vacancyList = new ArrayList<>();
         vacancyList.add(vacancyTemp1);
         vacancyList.add(vacancyTemp2);
-        
+
         Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10000"));
         Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10001"));
         //when
@@ -69,7 +73,7 @@ public class VacancyTest extends DBUnitConfig {
         //then
         Vacancy vacancyFromDB1 = vacancyService.findByOriginalLink("https://bitbucket.org/10000");
         Assert.assertNotNull(vacancyFromDB1);
-        
+
         Vacancy vacancyFromDB2 = vacancyService.findByOriginalLink("https://bitbucket.org/10001");
         Assert.assertNotNull(vacancyFromDB2);
     }
@@ -108,9 +112,27 @@ public class VacancyTest extends DBUnitConfig {
     }
 
     @Test
-    public void shouldFindAllVacancys() throws DataSetException {
+    public void shouldFindAllVacancys() {
         List<Vacancy> vacancys = vacancyService.findAll();
         Assert.assertTrue(vacancys.size() == 4);
+    }
+
+    @Test
+    public void shouldCheckIsVacancyOlderThanTwoWeeks() {
+
+        //given
+        LocalDate today = LocalDate.now();
+        LocalDate dayMonthAgo = today.minusMonths(1);
+        vacancyTemp1.setCreationDate(java.sql.Date.valueOf(today));
+        vacancyTemp2.setCreationDate(java.sql.Date.valueOf(dayMonthAgo));
+
+        //when
+        boolean resultForToday = vacancyService.isVacancyOlderThanTwoWeeks(vacancyTemp1);
+        boolean resultForDayMonthAgo = vacancyService.isVacancyOlderThanTwoWeeks(vacancyTemp2);
+
+        //then
+        Assert.assertFalse(resultForToday);
+        Assert.assertTrue(resultForDayMonthAgo);
     }
 
     @Test
@@ -122,11 +144,11 @@ public class VacancyTest extends DBUnitConfig {
         //then
         Assert.assertTrue(vacancy.getVacancyId().equals(expectedVacancyId));
     }
-    
+
     @Test
     public void shouldFindAllVacancyByProviderName() {
 
-        Map <String, Vacancy> vacancyMap = vacancyService.findAllVacancyByProviderName("Blogspot Parser");
+        Map<String, Vacancy> vacancyMap = vacancyService.findAllVacancyByProviderName("Blogspot Parser");
         Assert.assertTrue(vacancyMap.size() == 3);
     }
 }

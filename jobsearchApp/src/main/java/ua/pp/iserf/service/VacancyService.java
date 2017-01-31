@@ -22,4 +22,6 @@ public interface VacancyService {
 
     public void createListofVacancy(List<Vacancy> vacancyList);
 
+    public boolean isVacancyOlderThanTwoWeeks(Vacancy vacancy);
+
 }
