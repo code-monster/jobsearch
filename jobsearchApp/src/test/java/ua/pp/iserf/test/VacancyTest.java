@@ -2,6 +2,7 @@ package ua.pp.iserf.test;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Assert;
@@ -97,5 +98,12 @@ public class VacancyTest extends DBUnitConfig {
         Vacancy vacancy = vacancyService.findByOriginalLink("https://bitbucket.org/4");
         //then
         Assert.assertTrue(vacancy.getVacancyId().equals(expectedVacancyId));
+    }
+    
+    @Test
+    public void shouldFindAllVacancyByProviderName() {
+
+        Map <String, Vacancy> vacancyMap = vacancyService.findAllVacancyByProviderName("Blogspot Parser");
+        Assert.assertTrue(vacancyMap.size() == 3);
     }
 }

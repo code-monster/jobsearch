@@ -2,6 +2,7 @@ package ua.pp.iserf.service;
 
 import ua.pp.iserf.entity.Vacancy;
 import java.util.List;
+import java.util.Map;
 
 public interface VacancyService {
 
@@ -16,5 +17,7 @@ public interface VacancyService {
     public List<Vacancy> findAll();
 
     public Vacancy findByOriginalLink(String originalLink);
+
+    public Map<String, Vacancy> findAllVacancyByProviderName(String providerName);
 
 }

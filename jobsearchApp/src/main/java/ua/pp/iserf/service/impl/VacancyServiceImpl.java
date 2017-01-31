@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import ua.pp.iserf.entity.Vacancy;
 
 @Service
@@ -48,6 +49,11 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public Vacancy findByOriginalLink(String originalLink) {
         return vacancyDAO.findByOriginalLink(originalLink);
+    }
+
+    @Override
+    public Map<String, Vacancy> findAllVacancyByProviderName(String providerName) {
+        return vacancyDAO.findAllVacancyByProviderName(providerName);
     }
 
 }

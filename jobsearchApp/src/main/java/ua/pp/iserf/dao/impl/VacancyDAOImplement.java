@@ -3,7 +3,9 @@ package ua.pp.iserf.dao.impl;
 import ua.pp.iserf.dao.VacancyDAO;
 import ua.pp.iserf.entity.Vacancy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,20 @@ public class VacancyDAOImplement implements VacancyDAO {
         }
 
         return vacancy;
+    }
+
+    @Override
+    public Map<String, Vacancy> findAllVacancyByProviderName(String providerName) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("from Vacancy v where v.provider = :provider")
+                .setString("provider", providerName);
+        List<Vacancy> listVacancy = new ArrayList<>(query.list());
+        Map<String, Vacancy> mapVacancy = new HashMap<String, Vacancy>();
+        for (Vacancy vacancy : listVacancy) {
+            mapVacancy.put(vacancy.getOriginalLink(), vacancy);
+        }
+
+        return mapVacancy;
     }
 
 }
