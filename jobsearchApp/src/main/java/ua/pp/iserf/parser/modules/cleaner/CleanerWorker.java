@@ -13,7 +13,7 @@ import ua.pp.iserf.service.VacancyService;
 public class CleanerWorker implements Runnable {
 
     private VacancyService vacancyService;
-    private final long SLEEP_TIME =  TimeUnit.SECONDS.toMillis(5);
+    private final long SLEEP_TIME =  TimeUnit.SECONDS.toMillis(20);
 
     public CleanerWorker(VacancyService vacancyService) {
         this.vacancyService = vacancyService;
