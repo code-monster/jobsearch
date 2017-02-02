@@ -4,12 +4,12 @@ package ua.pp.iserf.parser.core;
  *
  * @author alex
  */
-public abstract class Provider {
+public abstract class Module {
 
-    private boolean runningStatus;
-    private boolean enable;
+    private boolean runningStatus = false;
+    private boolean enable = false;
     // required field, this name will used in database 
-    private String name;
+    private String name = "Unnamed";
 
     public abstract void start();
 

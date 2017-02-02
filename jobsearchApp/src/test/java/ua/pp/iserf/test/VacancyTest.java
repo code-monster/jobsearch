@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Assert;
 import org.junit.Before;
@@ -134,7 +133,7 @@ public class VacancyTest extends DBUnitConfig {
         Assert.assertFalse(resultForToday);
         Assert.assertTrue(resultForDayMonthAgo);
     }
-
+    
     @Test
     public void shouldFindVacancyByOriginalLink() {
         //given

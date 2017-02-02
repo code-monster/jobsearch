@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.pp.iserf.entity.Vacancy;
-import ua.pp.iserf.parser.core.Provider;
+import ua.pp.iserf.parser.core.Module;
 import ua.pp.iserf.service.VacancyService;
 
 /**
@@ -20,7 +20,7 @@ import ua.pp.iserf.service.VacancyService;
  * @author alex
  */
 @Component
-public class BlogspotParser extends Provider {
+public class BlogspotParser extends Module {
 
     public final String BASE_URL = "http://javajobsearchapp.blogspot.com/";
 
@@ -28,7 +28,6 @@ public class BlogspotParser extends Provider {
     VacancyService vacancyService;
 
     public BlogspotParser() {
-        setRunningStatus(false);
         setEnable(true);
         setName("Blogspot Parser");
     }

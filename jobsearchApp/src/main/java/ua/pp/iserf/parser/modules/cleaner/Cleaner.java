@@ -1,27 +1,33 @@
-package ua.pp.iserf.parser.modules.emulate;
+package ua.pp.iserf.parser.modules.cleaner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.pp.iserf.parser.core.Module;
+import ua.pp.iserf.service.VacancyService;
 
 /**
  *
  * @author alex
  */
 @Component
-public class EmulateParser extends Module {
+public class Cleaner extends Module {
 
     private Thread thread;
 
-    public EmulateParser() {
-        setName("Emulate Parser");
+    @Autowired
+    VacancyService vacancyService;
+
+    public Cleaner() {
+        setEnable(true);
+        setName("Cleaner");
     }
 
     public void start() {
         if (isEnable() == false) {
             return;
         }
-        EmulateWorker emulateParser = new EmulateWorker();
-        thread = new Thread(emulateParser);
+        CleanerWorker cleanerWorker = new CleanerWorker(vacancyService);
+        thread = new Thread(cleanerWorker);
         thread.start();
         setRunningStatus(true);
     }
