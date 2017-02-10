@@ -23,8 +23,8 @@ public class VacancyTest extends DBUnitConfig {
     @Autowired
     private VacancyService vacancyService;
 
-    Vacancy vacancyTemp1;
-    Vacancy vacancyTemp2;
+    private Vacancy vacancyTemp1;
+    private Vacancy vacancyTemp2;
 
     public VacancyTest() throws SQLException, ClassNotFoundException {
     }
@@ -81,24 +81,24 @@ public class VacancyTest extends DBUnitConfig {
     @Test
     public void shouldDeleteVacancy() {
         //given
-        Vacancy vacancy = vacancyService.findById(503l);
+        Vacancy vacancy = vacancyService.findById(503L);
         Assert.assertNotNull(vacancy);
         //when
         vacancyService.delete(vacancy);
         //then
-        Assert.assertNull(vacancyService.findById(503l));
+        Assert.assertNull(vacancyService.findById(503L));
     }
 
     @Test
     public void shouldUpdateVacancy() {
         //given
-        Vacancy vacancy = vacancyService.findById(504l);
+        Vacancy vacancy = vacancyService.findById(504L);
         String newVacancyName = "Java senior";
         vacancy.setVacancyName(newVacancyName);
         //when
         vacancyService.update(vacancy);
         //then
-        Assert.assertTrue(vacancyService.findById(504l).getVacancyName().equals(newVacancyName));
+        Assert.assertTrue(vacancyService.findById(504L).getVacancyName().equals(newVacancyName));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class VacancyTest extends DBUnitConfig {
         //given
         String expectedOriginalLink = "https://bitbucket.org/1";
         //when
-        Vacancy vacancy = vacancyService.findById(501l);
+        Vacancy vacancy = vacancyService.findById(501L);
         //then
         Assert.assertTrue(vacancy.getOriginalLink().equals(expectedOriginalLink));
     }
@@ -147,7 +147,7 @@ public class VacancyTest extends DBUnitConfig {
     @Test
     public void shouldFindVacancyByOriginalLink() {
         //given
-        Long expectedVacancyId = 504l;
+        Long expectedVacancyId = 504L;
         //when
         Vacancy vacancy = vacancyService.findByOriginalLink("https://bitbucket.org/4");
         //then
