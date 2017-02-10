@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Assert;
 import org.junit.Before;
@@ -117,6 +118,15 @@ public class VacancyTest extends DBUnitConfig {
     }
 
     @Test
+    public void shouldFindAllVacancysAndSortByDate() {
+        List<Vacancy> vacancys = vacancyService.findAll();
+        Assert.assertEquals(new Long(501L), vacancys.get(0).getVacancyId());
+        Assert.assertEquals(new Long(502L), vacancys.get(1).getVacancyId());
+        Assert.assertEquals(new Long(504L), vacancys.get(2).getVacancyId());
+        Assert.assertEquals(new Long(503L), vacancys.get(3).getVacancyId());
+    }
+
+    @Test
     public void shouldCheckIsVacancyOlderThanTwoWeeks() {
 
         //given
@@ -133,7 +143,7 @@ public class VacancyTest extends DBUnitConfig {
         Assert.assertFalse(resultForToday);
         Assert.assertTrue(resultForDayMonthAgo);
     }
-    
+
     @Test
     public void shouldFindVacancyByOriginalLink() {
         //given

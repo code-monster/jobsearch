@@ -2,10 +2,12 @@ package ua.pp.iserf.dao.impl;
 
 import ua.pp.iserf.dao.VacancyDAO;
 import ua.pp.iserf.entity.Vacancy;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author alex
  */
 @Repository
@@ -49,7 +50,7 @@ public class VacancyDAOImplement implements VacancyDAO {
     @Override
     @Transactional
     public List<Vacancy> findAll() {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Vacancy");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Vacancy order by creationDate desc ");
         return new ArrayList<>(query.list());
     }
 
