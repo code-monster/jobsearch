@@ -19,7 +19,7 @@
                     <br>
                     <span><i class="fi-torso"> Company: ${vacancy.companyName}</i></span>
                     <br>
-                    <span><i class="fi-clock"> Posted time: ${vacancy.creationDate}</i></span>
+                    <span><i class="fi-clock"> Added to Java Job Search: ${vacancy.creationDate}</i></span>
                     <br>
                     <h5><a href="${vacancy.originalLink}">${vacancy.originalLink}</a></h5>
 

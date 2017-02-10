@@ -29,7 +29,6 @@ public class Cleaner extends Module {
         CleanerWorker cleanerWorker = new CleanerWorker(vacancyService);
         thread = new Thread(cleanerWorker);
         thread.start();
-        setRunningStatus(true);
     }
 
     public void stop() {
@@ -37,8 +36,6 @@ public class Cleaner extends Module {
             return;
         }
         thread.interrupt();
-        setRunningStatus(false);
-
     }
 
 }

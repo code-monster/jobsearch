@@ -26,7 +26,7 @@ public class ParserSettingController {
         ParserManagerSetting parserSetting = new ParserManagerSetting(
                 parserManager.getStatus(),
                 parserManager.getAction(),
-                parserManager.retrieveParserNameList()
+                parserManager.retrieveModuleInfo()
         );
         modelMap.addAttribute("parserSetting", parserSetting);
         return new ModelAndView("parsersetting");

@@ -18,36 +18,36 @@ public class ParserManager {
     public static final String STATUS_STOP = "STOP";
     private String status = STATUS_STOP;
     private String action;
-    private List<Module> parserList;
-
-    public List<String> retrieveParserNameList() {
-
-        List parserNameList = new ArrayList();
-        for (Module parser : parserList) {
-            parserNameList.add(parser.getName() + " enabled:" + parser.isEnable());
-        }
-
-        return parserNameList;
-    }
+    private List<Module> moduleList;
 
     public ParserManager() {
 
     }
 
+    public List<String> retrieveModuleInfo() {
+
+        List moduleInfoList = new ArrayList();
+        for (Module parser : moduleList) {
+            moduleInfoList.add(parser.getName() + " enabled:" + parser.isEnable());
+        }
+
+        return moduleInfoList;
+    }
+
     @Autowired
-    public void setParserList(List<Module> parserList) {
-        this.parserList = parserList;
+    public void setModuleList(List<Module> moduleList) {
+        this.moduleList = moduleList;
     }
 
     public void start() {
-        for (Module parser : parserList) {
+        for (Module parser : moduleList) {
             parser.start();
         }
         setStatus(STATUS_RUN);
     }
 
     public void stop() {
-        for (Module parser : parserList) {
+        for (Module parser : moduleList) {
             parser.stop();
         }
         setStatus(STATUS_STOP);
@@ -86,6 +86,13 @@ public class ParserManager {
      */
     public void setAction(String action) {
         this.action = action;
+    }
+
+    /**
+     * @return the moduleList
+     */
+    public List<Module> getModuleList() {
+        return moduleList;
     }
 
 }

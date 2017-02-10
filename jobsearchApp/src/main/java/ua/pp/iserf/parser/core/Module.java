@@ -6,7 +6,6 @@ package ua.pp.iserf.parser.core;
  */
 public abstract class Module {
 
-    private boolean runningStatus = false;
     private boolean enable = false;
     // required field, this name will used in database 
     private String name = "Unnamed";
@@ -41,20 +40,6 @@ public abstract class Module {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return the runningStatus
-     */
-    public boolean isRunningStatus() {
-        return runningStatus;
-    }
-
-    /**
-     * @param runningStatus the runningStatus to set
-     */
-    public void setRunningStatus(boolean runningStatus) {
-        this.runningStatus = runningStatus;
     }
 
 }
