@@ -11,10 +11,10 @@
             <div class="large-8 columns">
 
                 <h3>Setting for parser</h3>
-                <b>Parser list:</b>
+                <b>Modules:</b>
                 <ul>
-                    <c:forEach var="parserName"  items="${parserSetting.parserNameList}" >
-                        <li>${parserName}</li>    
+                    <c:forEach var="moduleName"  items="${parserSetting.moduleInfoList}" >
+                        <li>${moduleName}</li>    
                         </c:forEach>
                 </ul>
                 <br />

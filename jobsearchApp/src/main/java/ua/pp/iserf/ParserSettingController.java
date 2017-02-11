@@ -24,8 +24,7 @@ public class ParserSettingController {
     public ModelAndView index(ModelMap modelMap, HttpServletRequest request) {
 
         ParserManagerSetting parserSetting = new ParserManagerSetting(
-                parserManager.getStatus(),
-                parserManager.getAction(),
+                parserManager.isEnable(),
                 parserManager.retrieveModuleInfo()
         );
         modelMap.addAttribute("parserSetting", parserSetting);
@@ -38,12 +37,12 @@ public class ParserSettingController {
             RedirectAttributes redirectAttributes) {
 
         System.out.println("got parserAction =" + parserSetting.getAction() + "in controller");
-        if (parserSetting.getAction().equals(ParserManager.STATUS_STOP)) {
+        if (parserSetting.getAction().equals(ParserManagerSetting.STATUS_RUN)) {
             System.out.println("command stop in controller");
-            parserManager.stop();
+            parserManager.start();
         } else {
             System.out.println("command run  in controller");
-            parserManager.start();
+            parserManager.stop();
         }
 
         return new ModelAndView("redirect:/parsersetting");

@@ -14,10 +14,7 @@ import ua.pp.iserf.parser.core.Module;
 @Component
 public class ParserManager {
 
-    public static final String STATUS_RUN = "RUN";
-    public static final String STATUS_STOP = "STOP";
-    private String status = STATUS_STOP;
-    private String action;
+    private boolean enable = false;
     private List<Module> moduleList;
 
     public ParserManager() {
@@ -43,49 +40,14 @@ public class ParserManager {
         for (Module parser : moduleList) {
             parser.start();
         }
-        setStatus(STATUS_RUN);
+        enable = true;
     }
 
     public void stop() {
         for (Module parser : moduleList) {
             parser.stop();
         }
-        setStatus(STATUS_STOP);
-    }
-
-    /**
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    /**
-     * @return the action
-     */
-    public String getAction() {
-
-        if (status.equals(STATUS_RUN)) {
-            setAction(STATUS_STOP);
-        } else {
-            setAction(STATUS_RUN);
-        }
-
-        return action;
-    }
-
-    /**
-     * @param action the action to set
-     */
-    public void setAction(String action) {
-        this.action = action;
+        enable = false;
     }
 
     /**
@@ -93,6 +55,20 @@ public class ParserManager {
      */
     public List<Module> getModuleList() {
         return moduleList;
+    }
+
+    /**
+     * @return the enable
+     */
+    public boolean isEnable() {
+        return enable;
+    }
+
+    /**
+     * @param enable the enable to set
+     */
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
 }

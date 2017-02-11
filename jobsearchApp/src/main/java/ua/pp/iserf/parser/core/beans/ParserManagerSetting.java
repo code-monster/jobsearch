@@ -8,18 +8,40 @@ import java.util.List;
  */
 public class ParserManagerSetting {
 
+    private List<String> moduleInfoList;
+    private String status;
+    private String action;
+
+    public static final String STATUS_RUN = "RUN";
+    public static final String STATUS_STOP = "STOP";
+
     public ParserManagerSetting() {
     }
 
-    public ParserManagerSetting(String status, String action, List<String> parserNameList) {
-        this.status = status;
-        this.action = action;
-        this.parserNameList = parserNameList;
+    public ParserManagerSetting(boolean enable, List<String> moduleInfoList) {
+        if (enable) {
+            status = STATUS_RUN;
+            action = STATUS_STOP;
+        } else {
+            status = STATUS_STOP;
+            action = STATUS_RUN;
+        }
+        this.moduleInfoList = moduleInfoList;
     }
 
-    private String status;
-    private String action;
-    private List<String> parserNameList;
+    /**
+     * @return the moduleInfoList
+     */
+    public List<String> getModuleInfoList() {
+        return moduleInfoList;
+    }
+
+    /**
+     * @param moduleInfoList the moduleInfoList to set
+     */
+    public void setModuleInfoList(List<String> moduleInfoList) {
+        this.moduleInfoList = moduleInfoList;
+    }
 
     /**
      * @return the status
@@ -47,20 +69,6 @@ public class ParserManagerSetting {
      */
     public void setAction(String action) {
         this.action = action;
-    }
-
-    /**
-     * @return the parserNameList
-     */
-    public List<String> getParserNameList() {
-        return parserNameList;
-    }
-
-    /**
-     * @param parserNameList the parserNameList to set
-     */
-    public void setParserNameList(List<String> parserNameList) {
-        this.parserNameList = parserNameList;
     }
 
 }
