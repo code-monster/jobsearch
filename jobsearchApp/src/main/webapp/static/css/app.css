@@ -33,3 +33,7 @@ footer .copyright{
 footer {
     text-align: right;
 }
+
+table.modules{
+    width: 100%;
+}

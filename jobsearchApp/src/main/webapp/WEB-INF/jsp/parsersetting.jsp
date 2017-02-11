@@ -13,8 +13,8 @@
                 <h3>Setting for parser</h3>
                 <b>Modules:</b>
                 <ul>
-                    <c:forEach var="moduleName"  items="${parserSetting.moduleInfoList}" >
-                        <li>${moduleName}</li>    
+                    <c:forEach var="moduleName"  items="${parserSetting.moduleInfoList}"  varStatus="loop" >
+                        <li>${moduleName} <a href="<c:url value="/module?moduleIndex=${loop.index}"/>">edit</a></li>    
                         </c:forEach>
                 </ul>
                 <br />

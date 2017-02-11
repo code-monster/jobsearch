@@ -18,8 +18,8 @@ public class ParserManagerSetting {
     public ParserManagerSetting() {
     }
 
-    public ParserManagerSetting(boolean enable, List<String> moduleInfoList) {
-        if (enable) {
+    public ParserManagerSetting(boolean running, List<String> moduleInfoList) {
+        if (running) {
             status = STATUS_RUN;
             action = STATUS_STOP;
         } else {

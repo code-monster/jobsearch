@@ -14,7 +14,7 @@ import ua.pp.iserf.parser.core.Module;
 @Component
 public class ParserManager {
 
-    private boolean enable = false;
+    private boolean running = false;
     private List<Module> moduleList;
 
     public ParserManager() {
@@ -40,14 +40,19 @@ public class ParserManager {
         for (Module parser : moduleList) {
             parser.start();
         }
-        enable = true;
+        running = true;
     }
 
     public void stop() {
         for (Module parser : moduleList) {
             parser.stop();
         }
-        enable = false;
+        running = false;
+    }
+
+    public void restart() {
+        stop();
+        start();
     }
 
     /**
@@ -58,17 +63,17 @@ public class ParserManager {
     }
 
     /**
-     * @return the enable
+     * @return the running
      */
-    public boolean isEnable() {
-        return enable;
+    public boolean isRunning() {
+        return running;
     }
 
     /**
-     * @param enable the enable to set
+     * @param running the running to set
      */
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 
 }
