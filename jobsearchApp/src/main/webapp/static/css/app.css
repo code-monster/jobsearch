@@ -37,3 +37,7 @@ footer {
 table.modules{
     width: 100%;
 }
+
+header ul {
+  list-style-type: none;
+}

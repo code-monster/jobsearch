@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@attribute name="title"%>
 <%@attribute name="content" fragment="true"%>
@@ -34,7 +35,17 @@
                     </ul>
                 </div>
                 <div class="large-4 columns login-column">
-                    <a href="<c:url value="/login"/>">Login</a>
+                    <ul>
+                        <sec:authorize access="!hasAnyAuthority('admin','client')"> 
+                            <li><a href="<c:url value="/login/"/>">Login</a></li>
+                        </sec:authorize>  
+
+                        <sec:authorize access="hasAnyAuthority('admin','client')"> 
+                            <li><a href="<c:url value="/userhome"/>">User profile</a> </li>
+                            <li><a href="<c:url value="/logout"/>">Logout</a> </li>
+                        </sec:authorize>
+
+                    </ul>
                 </div>
 
             </div>
@@ -44,7 +55,7 @@
         </article>
         <footer>
             <div class="row">
-                    <span class="copyright">©2017 JavaJobSearch</span>
+                <span class="copyright">©2017 JavaJobSearch</span>
             </div>
         </footer>
     </body>
