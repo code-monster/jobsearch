@@ -55,6 +55,13 @@ public class VacancyDAOImplement implements VacancyDAO {
     }
 
     @Override
+    public List<Vacancy> findByPage(int limit, int offset) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Vacancy order by creationDate desc ")
+                .setFirstResult(limit).setMaxResults(offset);
+        return new ArrayList<>(query.list());
+    }
+
+    @Override
     public Vacancy findByOriginalLink(String originalLink) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("from Vacancy v where v.originalLink = :originalLink")
