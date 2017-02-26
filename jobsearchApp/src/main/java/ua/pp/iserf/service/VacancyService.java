@@ -16,6 +16,8 @@ public interface VacancyService {
 
     public List<Vacancy> findAll();
 
+    public List<Vacancy> findByPage(int limit, int offset);
+
     public Vacancy findByOriginalLink(String originalLink);
 
     public Map<String, Vacancy> findAllVacancyByProviderName(String providerName);
@@ -23,5 +25,6 @@ public interface VacancyService {
     public void createListofVacancy(List<Vacancy> vacancyList);
 
     public boolean isVacancyOlderThanTwoWeeks(Vacancy vacancy);
+
 
 }

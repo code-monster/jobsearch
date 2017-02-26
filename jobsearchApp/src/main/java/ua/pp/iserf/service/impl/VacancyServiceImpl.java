@@ -1,6 +1,7 @@
 package ua.pp.iserf.service.impl;
 
 import java.time.LocalDate;
+
 import ua.pp.iserf.dao.VacancyDAO;
 import ua.pp.iserf.service.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+
 import ua.pp.iserf.entity.Vacancy;
 
 @Service
@@ -45,6 +47,11 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public List<Vacancy> findAll() {
         return vacancyDAO.findAll();
+    }
+
+    @Override
+    public List<Vacancy> findByPage(int limit, int offset) {
+        return vacancyDAO.findByPage(limit, offset);
     }
 
     @Override

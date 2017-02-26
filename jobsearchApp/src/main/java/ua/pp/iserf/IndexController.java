@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.pp.iserf.service.VacancyService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
 
+    @Autowired
+    private HttpServletRequest context;
 
     @Autowired
     VacancyService vacancyService;
@@ -21,8 +24,14 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getMethod(ModelMap modelMap) {
 
-        List vacancyList = vacancyService.findAll();
+        int limit = 10;
+        int offset = 0;
 
+        if (context.getParameterMap().containsKey("offset") == true) {
+            offset = Integer.parseInt(context.getParameter("offset"));
+        }
+
+        List vacancyList = vacancyService.findByPage(limit, offset);
         modelMap.addAttribute("title", "View users");
         modelMap.addAttribute("vacancyList", vacancyList);
 
