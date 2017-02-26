@@ -2,6 +2,8 @@ package ua.pp.iserf.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.pp.iserf.parser.core.Module;
@@ -14,6 +16,8 @@ import ua.pp.iserf.parser.core.Module;
 @Component
 public class ParserManager {
 
+    private final static Logger LOG = LogManager.getLogger();
+    
     private boolean running = false;
     private List<Module> moduleList;
 
@@ -41,6 +45,7 @@ public class ParserManager {
             parser.start();
         }
         running = true;
+        LOG.debug("start");
     }
 
     public void stop() {
@@ -48,6 +53,7 @@ public class ParserManager {
             parser.stop();
         }
         running = false;
+        LOG.debug("stop");
     }
 
     public void restart() {

@@ -6,9 +6,7 @@
     <jsp:attribute name="content">
 
         <div class="row">
-            <jsp:include page="/WEB-INF/jsp/menu.jsp" flush="true" />
-
-            <div class="large-8 columns">
+            <div class="large-12 columns">
 
                 <h3>Setting for parser</h3>
                 <b>Modules:</b>

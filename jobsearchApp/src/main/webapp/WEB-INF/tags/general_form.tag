@@ -35,17 +35,7 @@
                     </ul>
                 </div>
                 <div class="large-4 columns login-column">
-                    <ul>
-                        <sec:authorize access="!hasAnyAuthority('admin','client')"> 
-                            <li><a href="<c:url value="/login/"/>">Login</a></li>
-                        </sec:authorize>  
-
-                        <sec:authorize access="hasAnyAuthority('admin','client')"> 
-                            <li><a href="<c:url value="/userhome"/>">User profile</a> </li>
-                            <li><a href="<c:url value="/logout"/>">Logout</a> </li>
-                        </sec:authorize>
-
-                    </ul>
+                         <jsp:include page="/WEB-INF/jsp/menu.jsp" flush="true" />
                 </div>
 
             </div>

@@ -1,5 +1,7 @@
 package ua.pp.iserf;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import ua.pp.iserf.parser.core.beans.ParserManagerSetting;
 @RequestMapping("/parsersetting")
 public class ParserSettingController {
 
+    private final static Logger LOG = LogManager.getLogger();
+    
     @Autowired
     ParserManager parserManager;
 
@@ -35,6 +39,8 @@ public class ParserSettingController {
     public ModelAndView postAction(Model modelMap,
             @ModelAttribute("parserSetting") ParserManagerSetting parserSetting,
             RedirectAttributes redirectAttributes) {
+       
+        LOG.debug("got parserAction = " + parserSetting.getAction() + " in controller");
 
         System.out.println("got parserAction = " + parserSetting.getAction() + " in controller");
         if (parserSetting.getAction().equals(ParserManagerSetting.STATUS_RUN)) {

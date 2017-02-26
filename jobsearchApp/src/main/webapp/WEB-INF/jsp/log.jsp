@@ -3,19 +3,18 @@
 
 <t:general_form title="home">
     <jsp:attribute name="content">
-            
+ 
         <div class="row">
+       
             <div class="large-12 columns">
 
-                <c:out value="${title}" />
-
-                <div class="panel-body">
-
-                    <p>Welcome, <c:out value="${username}"/>!</p>
-
+                <h3>Log:</h3>
+                <div>
+                    <textarea rows="20" cols="20" readonly="readonly">${logContent}</textarea>
                 </div>
             </div>
         </div>
+                
 
     </jsp:attribute>
 </t:general_form>
