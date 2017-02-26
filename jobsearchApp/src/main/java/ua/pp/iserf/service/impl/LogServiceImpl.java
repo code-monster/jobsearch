@@ -1,5 +1,6 @@
 package ua.pp.iserf.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,7 @@ public class LogServiceImpl implements LogService {
     }
 
     private String getLoggerFileName() {
-        return System.getProperty("catalina.base") + "/logs/jobsearch.log";
+        return System.getProperty("catalina.base") + File.separator +"logs" + File.separator + "jobsearch.log";
     }
 
     private String readFile(String path, Charset encoding)
