@@ -37,8 +37,6 @@ public class ParserManagerTest extends DBUnitConfig {
     @Test
     public void testRetrieveModuleInfo() {
 
-        parserManager.start();
-
         //given
         List<Module> moduleList = parserManager.getModuleList();
 

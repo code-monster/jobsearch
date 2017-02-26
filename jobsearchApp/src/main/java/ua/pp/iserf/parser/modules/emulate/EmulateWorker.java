@@ -1,26 +1,28 @@
 package ua.pp.iserf.parser.modules.emulate;
 
-import java.sql.Timestamp;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author alex
  */
-public class EmulateWorker  implements Runnable {
+public class EmulateWorker implements Runnable {
+
+    private final static Logger LOG = LogManager.getLogger();
 
     @Override
     public void run() {
         int counter = 0;
         while (Thread.currentThread().isInterrupted() == false) {
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            System.out.println(timestamp + "Emulate Parser counter=" + counter);
+            LOG.info("Emulate Parser counter=" + counter);
             counter++;
 
             try {
-                Thread.sleep(300);
+                Thread.sleep(10000);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
-                System.out.println("EmulateParser is interrupted!");
+                LOG.info("EmulateParser is interrupted!");
             }
         }
 

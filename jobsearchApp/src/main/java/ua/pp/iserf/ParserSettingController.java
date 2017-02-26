@@ -42,7 +42,6 @@ public class ParserSettingController {
        
         LOG.debug("got parserAction = " + parserSetting.getAction() + " in controller");
 
-        System.out.println("got parserAction = " + parserSetting.getAction() + " in controller");
         if (parserSetting.getAction().equals(ParserManagerSetting.STATUS_RUN)) {
             parserManager.start();
         } else {

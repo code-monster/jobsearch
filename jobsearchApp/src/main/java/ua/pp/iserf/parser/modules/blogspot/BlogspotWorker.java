@@ -1,11 +1,12 @@
 package ua.pp.iserf.parser.modules.blogspot;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.pp.iserf.entity.Vacancy;
 import ua.pp.iserf.service.VacancyService;
 
@@ -15,6 +16,7 @@ import ua.pp.iserf.service.VacancyService;
  */
 public class BlogspotWorker implements Runnable {
 
+    private final static Logger LOG = LogManager.getLogger();
     private VacancyService vacancyService;
     private final long SLEEP_TIME = TimeUnit.SECONDS.toMillis(5);
     private String providerName;
@@ -30,14 +32,14 @@ public class BlogspotWorker implements Runnable {
     public void run() {
         int counter = 0;
         while (Thread.currentThread().isInterrupted() == false) {
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            System.out.println(timestamp + " BlogspotWorker counter=" + counter);
+
+            LOG.info("BlogspotWorker counter=" + counter);
             counter++;
 
             ListVacancyParser listVacancyParser = new ListVacancyParser(BASE_URL);
             List allPageUrl = listVacancyParser.getAllUrl();
             // for test
-            System.out.println(java.util.Arrays.deepToString(allPageUrl.toArray()));
+            LOG.info("all Page Url:" + java.util.Arrays.deepToString(allPageUrl.toArray()));
 
             Map<String, Vacancy> allProviderVacancyInDB = vacancyService.findAllVacancyByProviderName(providerName);
             List<Vacancy> freshVacancyList = new ArrayList<Vacancy>();
@@ -50,22 +52,21 @@ public class BlogspotWorker implements Runnable {
                     singleVacancyParser.setBaseUrl(url);
                     Vacancy vacancy = singleVacancyParser.getVacancy();
                     freshVacancyList.add(vacancy);
-                    System.out.println(vacancy.toString());
+                    LOG.info(vacancy.toString());
                 }
             }
 
-            System.out.println("we got freshVacancyList = " + freshVacancyList.size());
+            LOG.info("we got freshVacancyList = " + freshVacancyList.size());
             vacancyService.createListofVacancy(freshVacancyList);
 
             try {
                 Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
-                System.out.println("BlogspotWorker is interrupted!");
+                LOG.info("BlogspotWorker is interrupted!");
             }
         }
 
     }
-
 
 }
