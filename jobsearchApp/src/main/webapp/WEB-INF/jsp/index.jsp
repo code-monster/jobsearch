@@ -1,9 +1,9 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <t:general_form title="home">
     <jsp:attribute name="content">
-
         <c:choose>
             <c:when test="${not empty vacancyList}">
                 <c:forEach var="vacancy"  items="${vacancyList}" >

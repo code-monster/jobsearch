@@ -14,6 +14,7 @@ public class SingleVacancyParser {
 
     private String baseUrl;
     private String providerName;
+    private final int DESCRIPTION_SIZE = 255;
 
     public SingleVacancyParser(String providerName) {
         this.providerName = providerName;
@@ -31,7 +32,7 @@ public class SingleVacancyParser {
         return vacancy;
     }
 
-    protected Document getDocument(String urlOpen) {
+    private Document getDocument(String urlOpen) {
         Document doc;
         try {
             doc = Jsoup.connect(urlOpen).get();
@@ -41,14 +42,14 @@ public class SingleVacancyParser {
         return doc;
     }
 
-    public java.sql.Date getTodayDate() {
+    private java.sql.Date getTodayDate() {
         LocalDate today = LocalDate.now();
         return java.sql.Date.valueOf(today);
     }
 
-    public String cutDescription(String description) {
-        if (description.length() > 255) {
-            description = description.substring(0, 250) + "...";
+    private String cutDescription(String description) {
+        if (description.length() > DESCRIPTION_SIZE) {
+            description = description.substring(0, DESCRIPTION_SIZE-5) + "...";
         }
         return description;
     }

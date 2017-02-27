@@ -60,6 +60,30 @@ public class VacancyTest extends DBUnitConfig {
     }
 
     @Test
+    public void shouldCreateVacancyWithCyrillic() {
+
+        //given
+        final String VACANCY_NAME = "Вакансия младшего специалиста";
+        final String VACANCY_CITY = "Харьков";
+        final String VACANCY_DESCRIPTION = "описание вакансии текст";
+        Vacancy vacancyCyrillic = new Vacancy(VACANCY_NAME, "Absolut",
+                Helper.convertStringToSqlDate("17/07/2016"), "500", VACANCY_CITY,
+                VACANCY_DESCRIPTION, "https://bitbucket.org/10010", "Emulate Parser");
+
+        Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10010"));
+        //when
+        vacancyService.create(vacancyCyrillic);
+        //then
+        Vacancy vacancyFromDB = vacancyService.findByOriginalLink("https://bitbucket.org/10010");
+        Assert.assertNotNull(vacancyFromDB);
+        Assert.assertEquals(VACANCY_NAME, vacancyFromDB.getVacancyName());
+        Assert.assertEquals(VACANCY_CITY, vacancyFromDB.getLocation());
+        Assert.assertEquals(VACANCY_DESCRIPTION, vacancyFromDB.getDescription());
+        //deleting  new row
+        vacancyService.delete(vacancyFromDB);
+    }
+
+    @Test
     public void shouldCreateListofVacancy() {
         //given
         List<Vacancy> vacancyList = new ArrayList<>();

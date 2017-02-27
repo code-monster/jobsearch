@@ -2,14 +2,15 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@tag pageEncoding="UTF-8"%>
 <%@attribute name="title"%>
 <%@attribute name="content" fragment="true"%>
+
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -37,7 +38,6 @@
                 <div class="large-4 columns login-column">
                          <jsp:include page="/WEB-INF/jsp/menu.jsp" flush="true" />
                 </div>
-
             </div>
         </header>
         <article>
@@ -45,7 +45,7 @@
         </article>
         <footer>
             <div class="row">
-                <span class="copyright">©2017 JavaJobSearch</span>
+                <span class="copyright">Â©2017 JavaJobSearch</span>
             </div>
         </footer>
     </body>
