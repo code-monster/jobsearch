@@ -43,7 +43,7 @@ public class ParserManagerTest extends DBUnitConfig {
         List expectResult = new ArrayList();
         for (Module module : moduleList) {
             module.setEnable(false);
-            expectResult.add(module.getName() + " enabled:false");
+            expectResult.add(module.getName() + " enabled:false running:false");
         }
         //when
         List retrieveModuleInfo = parserManager.retrieveModuleInfo();

@@ -2,7 +2,6 @@ package ua.pp.iserf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +21,7 @@ public class IndexController {
     VacancyService vacancyService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getMethod(ModelMap modelMap) {
+    public ModelAndView getMethod() {
 
         int limit = 10;
         int offset = 0;
@@ -32,9 +31,11 @@ public class IndexController {
         }
 
         List vacancyList = vacancyService.findByPage(limit, offset);
-        modelMap.addAttribute("title", "View users");
-        modelMap.addAttribute("vacancyList", vacancyList);
 
-        return new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.getModelMap().addAttribute("title", "View vacancies");
+        modelAndView.getModelMap().addAttribute("vacancyList", vacancyList);
+
+        return modelAndView;
     }
 }

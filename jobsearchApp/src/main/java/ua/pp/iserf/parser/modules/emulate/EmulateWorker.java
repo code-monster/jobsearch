@@ -19,7 +19,7 @@ public class EmulateWorker implements Runnable {
             counter++;
 
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
                 LOG.info("EmulateParser is interrupted!");

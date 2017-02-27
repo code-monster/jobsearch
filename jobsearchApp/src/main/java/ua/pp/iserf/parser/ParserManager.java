@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.pp.iserf.parser.core.Module;
+import ua.pp.iserf.parser.core.beans.ParserManagerSetting;
 
 /**
  * Global control for all parser objects
@@ -17,7 +18,7 @@ import ua.pp.iserf.parser.core.Module;
 public class ParserManager {
 
     private final static Logger LOG = LogManager.getLogger();
-    
+
     private boolean running = false;
     private List<Module> moduleList;
 
@@ -28,8 +29,10 @@ public class ParserManager {
     public List<String> retrieveModuleInfo() {
 
         List moduleInfoList = new ArrayList();
-        for (Module parser : moduleList) {
-            moduleInfoList.add(parser.getName() + " enabled:" + parser.isEnable());
+        for (Module module : moduleList) {
+            moduleInfoList.add(module.getName() 
+                    + " enabled:" + module.isEnable()
+                    + " running:" + module.isRunning());
         }
 
         return moduleInfoList;
@@ -41,16 +44,16 @@ public class ParserManager {
     }
 
     public void start() {
-        for (Module parser : moduleList) {
-            parser.start();
+        for (Module module : moduleList) {
+            module.start();
         }
         running = true;
         LOG.debug("start");
     }
 
     public void stop() {
-        for (Module parser : moduleList) {
-            parser.stop();
+        for (Module module : moduleList) {
+            module.stop();
         }
         running = false;
         LOG.debug("stop");
@@ -59,6 +62,14 @@ public class ParserManager {
     public void restart() {
         stop();
         start();
+    }
+
+    public void applySetting(ParserManagerSetting parserSetting) {
+        if (parserSetting.isRunAction()) {
+            start();
+        } else {
+            stop();
+        }
     }
 
     /**

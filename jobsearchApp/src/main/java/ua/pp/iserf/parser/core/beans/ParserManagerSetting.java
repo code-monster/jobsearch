@@ -71,4 +71,7 @@ public class ParserManagerSetting {
         this.action = action;
     }
 
+    public boolean isRunAction() {
+        return getAction().equals(STATUS_RUN);
+    }
 }

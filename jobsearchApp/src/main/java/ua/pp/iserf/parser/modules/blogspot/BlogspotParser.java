@@ -31,6 +31,7 @@ public class BlogspotParser extends Module {
         BlogspotWorker blogspotWorker = new BlogspotWorker(vacancyService, BASE_URL, this.getName());
         thread = new Thread(blogspotWorker);
         thread.start();
+        running = true;
     }
 
     public void stop() {
@@ -38,6 +39,7 @@ public class BlogspotParser extends Module {
             return;
         }
         thread.interrupt();
+        running = false;
     }
 
 }

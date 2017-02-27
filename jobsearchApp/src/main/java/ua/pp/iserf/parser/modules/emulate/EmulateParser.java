@@ -23,6 +23,7 @@ public class EmulateParser extends Module {
         EmulateWorker emulateParser = new EmulateWorker();
         thread = new Thread(emulateParser);
         thread.start();
+        running = true;
     }
 
     public void stop() {
@@ -30,7 +31,7 @@ public class EmulateParser extends Module {
             return;
         }
         thread.interrupt();
-
+        running = false;
     }
 
 }
