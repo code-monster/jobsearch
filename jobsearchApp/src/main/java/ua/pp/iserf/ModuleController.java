@@ -28,6 +28,12 @@ public class ModuleController {
         List<Module> moduleList = parserManager.getModuleList();
         int moduleIndex = Integer.parseInt(context.getParameter("moduleIndex"));
         Module module = moduleList.get(moduleIndex);
+        
+        if (context.getParameterMap().containsKey("activate") == true) {
+            boolean activate = Boolean.parseBoolean(context.getParameter("activate"));
+            module.setEnable(activate);
+        }
+        
         ModuleSetting moduleSetting = new ModuleSetting(module.getName(), module.isEnable(), moduleIndex);
 
         ModelAndView modelAndView = new ModelAndView("module");

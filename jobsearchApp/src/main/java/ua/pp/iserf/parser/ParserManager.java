@@ -19,7 +19,6 @@ public class ParserManager {
 
     private final static Logger LOG = LogManager.getLogger();
 
-    private boolean running = false;
     private List<Module> moduleList;
 
     public ParserManager() {
@@ -37,7 +36,7 @@ public class ParserManager {
 
         return moduleInfoList;
     }
-
+    
     @Autowired
     public void setModuleList(List<Module> moduleList) {
         this.moduleList = moduleList;
@@ -47,7 +46,7 @@ public class ParserManager {
         for (Module module : moduleList) {
             module.start();
         }
-        running = true;
+
         LOG.debug("start");
     }
 
@@ -55,7 +54,7 @@ public class ParserManager {
         for (Module module : moduleList) {
             module.stop();
         }
-        running = false;
+
         LOG.debug("stop");
     }
 
@@ -79,18 +78,5 @@ public class ParserManager {
         return moduleList;
     }
 
-    /**
-     * @return the running
-     */
-    public boolean isRunning() {
-        return running;
-    }
-
-    /**
-     * @param running the running to set
-     */
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
 
 }

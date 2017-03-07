@@ -11,6 +11,7 @@ public abstract class Module {
     private boolean enable = false;
     // required field, this name will used in database 
     private String name = "Unnamed";
+    private String description = "";
     public boolean running;
 
     public abstract void start();
@@ -38,6 +39,18 @@ public abstract class Module {
         return false;
     }
 
+    public void applyChangeEnable(boolean enableCommand) {
+        
+        if (isRunning()) {
+            stop();
+            setEnable(enableCommand);
+            start();
+        } else {
+         //   setEnable(moduleSetting.isEnable());
+        }
+        
+    }
+    
     public void applySetting(ModuleSetting moduleSetting) {
         if (isSettingEqual(moduleSetting)) {
            return;
@@ -66,6 +79,20 @@ public abstract class Module {
         this.name = name;
     }
 
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     /**
      * @return the running
      */

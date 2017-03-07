@@ -9,24 +9,37 @@
         <div class="row">
             <div class="large-12 columns">
 
-                <h3>Setting for parser</h3>
-                <b>Modules:</b>
-                <ul>
-                    <c:forEach var="moduleName"  items="${parserSetting.moduleInfoList}"  varStatus="loop" >
-                        <li>${moduleName} <a href="<c:url value="/module?moduleIndex=${loop.index}"/>">edit</a></li>    
+                <h3>Parser modules:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Module</th>
+                            <th>Description</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <c:forEach var="module"  items="${moduleList}"  varStatus="loop" >
+                            <tr>
+                                <td>  
+                                    <c:choose>
+                                        <c:when test="${module.enable == true}">
+                                          <a href="<c:url value="/module?moduleIndex=${loop.index}&activate=false"/>">deactivate</a> 
+                                        </c:when>
+
+                                        <c:when test="${module.enable == false}">
+                                          <a href="<c:url value="/module?moduleIndex=${loop.index}&activate=true"/>">activate</a> 
+                                        </c:when>
+                                    </c:choose>
+                                </td> 
+                                <td>${module.name}</td>
+                                <td>${module.description}<a href="<c:url value="/module?moduleIndex=${loop.index}"/>">edit</a></td> 
+                            </tr>
                         </c:forEach>
-                </ul>
-                <br />
-
-                <p>Parser status=${parserSetting.status}</p>
-                <form:form  method="POST" commandName="parserSetting" action="">
-                    <form:hidden path="action" />
-                    <input type="submit" name="submit" class="login login-submit  btn btn-lg btn-success" value="${parserSetting.action}">
-                </form:form>     
-
+                    </tbody> 
+                </table>
             </div>
         </div>
-
 
     </jsp:attribute>
 </t:general_form>

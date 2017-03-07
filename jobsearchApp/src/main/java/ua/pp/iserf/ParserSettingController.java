@@ -23,13 +23,8 @@ public class ParserSettingController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
 
-        ParserManagerSetting parserSetting = new ParserManagerSetting(
-                parserManager.isRunning(),
-                parserManager.retrieveModuleInfo()
-        );
-   
         ModelAndView modelAndView = new ModelAndView("parsersetting");
-        modelAndView.getModelMap().addAttribute("parserSetting", parserSetting);
+        modelAndView.getModelMap().addAttribute("moduleList", parserManager.getModuleList());
 
         return modelAndView;
     }
