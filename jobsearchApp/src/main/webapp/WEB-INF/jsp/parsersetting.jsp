@@ -15,7 +15,6 @@
                         <tr>
                             <th>Action</th>
                             <th>Module</th>
-                            <th>Description</th>
                         </tr> 
                     </thead>
                     <tbody>
@@ -23,17 +22,16 @@
                             <tr>
                                 <td>  
                                     <c:choose>
-                                        <c:when test="${module.enable == true}">
-                                          <a href="<c:url value="/module?moduleIndex=${loop.index}&activate=false"/>">deactivate</a> 
+                                        <c:when test="${module.running == true}">
+                                            <a href="<c:url value="/module?moduleIndex=${loop.index}&activate=false"/>">deactivate</a> 
                                         </c:when>
 
-                                        <c:when test="${module.enable == false}">
-                                          <a href="<c:url value="/module?moduleIndex=${loop.index}&activate=true"/>">activate</a> 
+                                        <c:when test="${module.running == false}">
+                                            <a href="<c:url value="/module?moduleIndex=${loop.index}&activate=true"/>">activate</a> 
                                         </c:when>
                                     </c:choose>
                                 </td> 
-                                <td>${module.name}</td>
-                                <td>${module.description}<a href="<c:url value="/module?moduleIndex=${loop.index}"/>">edit</a></td> 
+                                <td>${module.getName()}</td>
                             </tr>
                         </c:forEach>
                     </tbody> 

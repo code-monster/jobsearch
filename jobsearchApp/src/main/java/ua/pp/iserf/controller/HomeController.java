@@ -1,4 +1,4 @@
-package ua.pp.iserf;
+package ua.pp.iserf.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.userdetails.User;

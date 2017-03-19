@@ -1,4 +1,4 @@
-package ua.pp.iserf;
+package ua.pp.iserf.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

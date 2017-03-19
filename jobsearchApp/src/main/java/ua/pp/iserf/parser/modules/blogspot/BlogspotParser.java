@@ -5,41 +5,33 @@ import org.springframework.stereotype.Component;
 import ua.pp.iserf.parser.core.Module;
 import ua.pp.iserf.service.VacancyService;
 
-/**
- *
- * @author alex
- */
 @Component
 public class BlogspotParser extends Module {
 
     public final String BASE_URL = "http://javajobsearchapp.blogspot.com/";
     private Thread thread;
+    private VacancyService vacancyService;
 
     @Autowired
-    VacancyService vacancyService;
-
-    public BlogspotParser() {
-        setEnable(true);
-        setName("Blogspot Parser");
+    public BlogspotParser(final VacancyService vacancyService) {
+        this.vacancyService = vacancyService;
     }
 
-    public void start() {
-        if (isEnable() == false) {
-            return;
-        }
-
+    @Override
+    public void begin() {
         BlogspotWorker blogspotWorker = new BlogspotWorker(vacancyService, BASE_URL, this.getName());
         thread = new Thread(blogspotWorker);
         thread.start();
-        running = true;
     }
 
-    public void stop() {
-        if (isEnable() == false) {
-            return;
-        }
+    @Override
+    public void end() {
         thread.interrupt();
-        running = false;
+    }
+
+    @Override
+    public String getName() {
+        return "Blogspot Parser";
     }
 
 }
