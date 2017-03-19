@@ -15,12 +15,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class VacancyDAOImplement implements VacancyDAO {
+public class VacancyDAOImpl implements VacancyDAO {
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
+    public VacancyDAOImpl(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

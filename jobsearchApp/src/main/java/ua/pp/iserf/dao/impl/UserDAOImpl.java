@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class UserDAOImplement implements UserDAO {
+public class UserDAOImpl implements UserDAO {
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
+    public UserDAOImpl(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

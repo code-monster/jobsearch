@@ -7,12 +7,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ua.pp.iserf.service.LogService;
 import ua.pp.iserf.util.FileSizeUtil;
 
 @Service
-@Transactional
 public class LogServiceImpl implements LogService {
 
     private final float FILE_SIZE_LIMIT = 3;
@@ -42,12 +40,6 @@ public class LogServiceImpl implements LogService {
     }
 
     private String readFile(String path, Charset encoding)
-            throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        return new String(encoded, encoding);
-    }
-
-    private String checkSize(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
