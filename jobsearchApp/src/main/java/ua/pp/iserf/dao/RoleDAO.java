@@ -3,9 +3,6 @@ package ua.pp.iserf.dao;
 import java.util.List;
 import ua.pp.iserf.entity.Role;
 
-/**
- * Created by alex
- */
 public interface RoleDAO {
 
     public void create(Role role);

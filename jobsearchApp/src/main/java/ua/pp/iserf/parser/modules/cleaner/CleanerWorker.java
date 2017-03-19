@@ -7,17 +7,13 @@ import org.apache.logging.log4j.Logger;
 import ua.pp.iserf.entity.Vacancy;
 import ua.pp.iserf.service.VacancyService;
 
-/**
- *
- * @author alex
- */
 public class CleanerWorker implements Runnable {
 
     private final static Logger LOG = LogManager.getLogger();
     private VacancyService vacancyService;
-    private final long SLEEP_TIME =  TimeUnit.SECONDS.toMillis(20);
+    private final long SLEEP_TIME = TimeUnit.SECONDS.toMillis(20);
 
-    public CleanerWorker(VacancyService vacancyService) {
+    public CleanerWorker(final VacancyService vacancyService) {
         this.vacancyService = vacancyService;
     }
 

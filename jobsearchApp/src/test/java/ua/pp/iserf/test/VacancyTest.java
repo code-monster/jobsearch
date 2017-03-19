@@ -1,6 +1,8 @@
 package ua.pp.iserf.test;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import ua.pp.iserf.config.DBUnitConfig;
 import ua.pp.iserf.entity.Vacancy;
 import ua.pp.iserf.service.VacancyService;
-import ua.pp.iserf.util.Helper;
 
 @WebAppConfiguration
 public class VacancyTest extends DBUnitConfig {
@@ -39,10 +40,10 @@ public class VacancyTest extends DBUnitConfig {
         tester.onSetup();
 
         vacancyTemp1 = new Vacancy("Java Junior 1", "Absolut",
-                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
                 "description text", "https://bitbucket.org/10000", "Emulate Parser");
         vacancyTemp2 = new Vacancy("Java Junior 1", "Absolut",
-                Helper.convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
+                convertStringToSqlDate("17/07/2016"), "500", "Kharkov",
                 "description text", "https://bitbucket.org/10001", "Emulate Parser");
     }
 
@@ -67,7 +68,7 @@ public class VacancyTest extends DBUnitConfig {
         final String VACANCY_CITY = "Харьков";
         final String VACANCY_DESCRIPTION = "описание вакансии текст";
         Vacancy vacancyCyrillic = new Vacancy(VACANCY_NAME, "Absolut",
-                Helper.convertStringToSqlDate("17/07/2016"), "500", VACANCY_CITY,
+                convertStringToSqlDate("17/07/2016"), "500", VACANCY_CITY,
                 VACANCY_DESCRIPTION, "https://bitbucket.org/10010", "Emulate Parser");
 
         Assert.assertNull(vacancyService.findByOriginalLink("https://bitbucket.org/10010"));
@@ -184,4 +185,24 @@ public class VacancyTest extends DBUnitConfig {
         Map<String, Vacancy> vacancyMap = vacancyService.findAllVacancyByProviderName("Blogspot Parser");
         Assert.assertTrue(vacancyMap.size() == 3);
     }
+
+    /**
+     *
+     * @param stringDate format "dd/MM/yyyy"
+     * @return
+     */
+    private static java.sql.Date convertStringToSqlDate(String stringDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date utilDate = new java.util.Date();
+        try {
+            utilDate = sdf.parse(stringDate);
+        } catch (ParseException ex) {
+            throw new RuntimeException("Error, while string date has been converted:" + ex.getMessage());
+        }
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+        return sqlDate;
+
+    }
+
 }

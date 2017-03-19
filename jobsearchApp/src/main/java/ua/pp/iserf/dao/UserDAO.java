@@ -3,9 +3,6 @@ package ua.pp.iserf.dao;
 import ua.pp.iserf.entity.User;
 import java.util.List;
 
-/**
- * Created by alex
- */
 public interface UserDAO {
 
     public void create(User user);

@@ -26,5 +26,4 @@ public interface VacancyService {
 
     public boolean isVacancyOlderThanTwoWeeks(Vacancy vacancy);
 
-
 }

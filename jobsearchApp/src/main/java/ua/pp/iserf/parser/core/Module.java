@@ -1,9 +1,5 @@
 package ua.pp.iserf.parser.core;
 
-/**
- *
- * @author alex
- */
 public abstract class Module {
 
     private boolean running;

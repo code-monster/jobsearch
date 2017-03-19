@@ -3,10 +3,6 @@ package ua.pp.iserf.parser.modules.emulate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- *
- * @author alex
- */
 public class EmulateWorker implements Runnable {
 
     private final static Logger LOG = LogManager.getLogger();

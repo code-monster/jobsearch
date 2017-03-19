@@ -1,6 +1,5 @@
 package ua.pp.iserf.service.impl;
 
-import ua.pp.iserf.dao.RoleDAO;
 import ua.pp.iserf.dao.UserDAO;
 import ua.pp.iserf.entity.User;
 import ua.pp.iserf.service.UserService;
@@ -15,12 +14,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;
-    private RoleDAO roleDAO;
 
     @Autowired
-    public void setUserDAO(UserDAO userDAO, RoleDAO roleDAO) {
+    public void setUserDAO(final UserDAO userDAO) {
         this.userDAO = userDAO;
-        this.roleDAO = roleDAO;
     }
 
     @Override

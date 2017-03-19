@@ -10,10 +10,6 @@ import org.apache.logging.log4j.Logger;
 import ua.pp.iserf.entity.Vacancy;
 import ua.pp.iserf.service.VacancyService;
 
-/**
- *
- * @author alex
- */
 public class BlogspotWorker implements Runnable {
 
     private final static Logger LOG = LogManager.getLogger();

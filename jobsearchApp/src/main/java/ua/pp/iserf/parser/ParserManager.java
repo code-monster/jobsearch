@@ -18,9 +18,6 @@ public class ParserManager {
         this.moduleList = moduleList;
     }
 
-    /**
-     * @return the moduleList
-     */
     public List<Module> getModuleList() {
         return moduleList;
     }

@@ -6,10 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import ua.pp.iserf.entity.Vacancy;
 
-/**
- *
- * @author alex
- */
 public class SingleVacancyParser {
 
     private String baseUrl;
@@ -49,7 +45,7 @@ public class SingleVacancyParser {
 
     private String cutDescription(String description) {
         if (description.length() > DESCRIPTION_SIZE) {
-            description = description.substring(0, DESCRIPTION_SIZE-5) + "...";
+            description = description.substring(0, DESCRIPTION_SIZE - 5) + "...";
         }
         return description;
     }

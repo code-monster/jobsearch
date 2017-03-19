@@ -16,7 +16,7 @@ public class ParserSettingController {
     private final static Logger LOG = LogManager.getLogger();
 
     @Autowired
-    ParserManager parserManager;
+    private ParserManager parserManager;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {

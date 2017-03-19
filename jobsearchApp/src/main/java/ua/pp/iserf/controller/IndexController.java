@@ -18,7 +18,7 @@ public class IndexController {
     private HttpServletRequest context;
 
     @Autowired
-    VacancyService vacancyService;
+    private VacancyService vacancyService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getMethod() {
